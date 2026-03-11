@@ -46,6 +46,8 @@
       <button @click="rightButtonClick(4)">&#8594;</button>
     </div>
     <button>Click here to see if Parliament will accept your new Constitution</button>
+    <div v-if="showResults === true">Your new Constitution is project to {{DidYouPassOrFail}}. <br>You are expected to have a total of {{MP_votes}} votes and the following parties will likely support you: {{Parties_that_support_you}}</div>
+    <div v-else></div>
     <RouterLink to="/test-view">Test Views</RouterLink>
   </div>
 </template>
@@ -227,43 +229,50 @@ function rightButtonClick(input) {
   }
 }
 
-let MP_votes = 0
+let MP_votes = ref(0)
 let Parties_that_support_you = ref([])
+let DidYouPassOrFail = ref('FAIL')
 function finalVoteCalculator(){
+  showResultFunction()
   if (Conservative_love.value > 50){
-    MP_votes += 62
+    MP_votes.value += 62
     Parties_that_support_you.value.push('United Sordland Party Conservatives')
   }
   else{}if (Liberal_love.value > 50){
-    MP_votes += 62
-
+    MP_votes.value += 59
     Parties_that_support_you.value.push('United Sordland Party Liberals')
   }
-  else{}if (Nationalist_love.value > 50){
-    MP_votes += 62
-
-    Parties_that_support_you.value.push('National Front Party')
-  }
-  else{}if (Democratic_Socialism_love.value > 50){
-    MP_votes += 62
+  else{}if (Democratic_Socialism_love.value > 40){
+    MP_votes.value += 61
 
     Parties_that_support_you.value.push('People`s Justice and Freedom Party')
   }
-  else{}if (Ethnic_love.value > 50){
-    MP_votes += 62
+  else{}if (Nationalist_love.value > 40){
+    MP_votes.value += 37
+
+    Parties_that_support_you.value.push('National Front Party')
+  }
+  else{}if (Ethnic_love.value > 20){
+    MP_votes.value += 31
 
     Parties_that_support_you.value.push('Worker`s party of Bludia')
   }
   else{}
-
+  if(MP_votes.value > 125){
+    DidYouPassOrFail.value = 'PASS'
+  }
+  else{
+    DidYouPassOrFail.value = 'FAIL'
+  }
 }
+
+
 
 let showResults = ref(false)
 
 
 function showResultFunction() {
   console.log('Old showResults value: ' + showResults.value)
-
   if (showResults.value == false) {
     showResults.value = true
     console.log('New showResults value: ' + showResults.value)
@@ -273,7 +282,7 @@ function showResultFunction() {
     console.log('New showResults value: ' + showResults.value)
     return 
   }
-    
+  if 
 }
 </script>
 
