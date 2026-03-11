@@ -1,24 +1,24 @@
 <template>
   <div class="container2">
     <span class="approvalBar">
-      Conservative Approval:
+      USP (Conservative ) Approval:
       <span>{{ Conservative_love }}%</span>
     </span>
     <span class="approvalBar">
-      Reformist Approval: <span>{{ Liberal_love }}%</span>
+      USP (Reformist) Approval : <span>{{ Liberal_love }}%</span>
     </span>
     <span class="approvalBar">
-      Ethno-Nationalist Approval: <span>{{ Nationalist_love }}%</span>
+      NFP (Ethno-Nationalist) Approval: <span>{{ Nationalist_love }}%</span>
     </span>
     <span class="approvalBar">
-      Democratic Socialist Approval: <span>{{ Democratic_Socialism_love }}%</span>
+      PFJP (Democratic Socialist) Approval: <span>{{ Democratic_Socialism_love }}%</span>
     </span>
     <span>
-      Ethnic Minority Approval: <span>{{ Ethnic_love }}%</span>
+      WPB (Ethnic Minority) Approval: <span>{{ Ethnic_love }}%</span>
     </span>
   </div>
   <div class="container">
-    <h1 class="marginer">Sordland 1954 Constitution</h1>
+    <h1 class="marginer">Sordland 1958 Constitution</h1>
     <img @click="increment" src="" alt="" />
     <img @click="preview" src="" />
     <img: src="" />
@@ -32,7 +32,6 @@
       <p>{{ s2 }}</p>
       <button @click="rightButtonClick(2)">&#8594;</button>
     </div>
-    ''
     <h2>Amendment 3: Cabinet Positions</h2>
     <div class="subContainer">
       <button @click="leftButtonClick(3)">&#8592;</button>
@@ -54,16 +53,18 @@
 import { ref } from 'vue'
 import { reactive } from 'vue'
 
-let Conservative_love = ref(50)
-let Liberal_love = ref(50)
-let Nationalist_love = ref(50)
-let Democratic_Socialism_love = ref(50)
-let Ethnic_love = ref(50)
+// party love values for the top bar
+let Conservative_love = ref(45)
+let Liberal_love = ref(45)
+let Nationalist_love = ref(35)
+let Democratic_Socialism_love = ref(35)
+let Ethnic_love = ref(15)
 
 let s1_val = 0
 let s2_val = 0
 let s3_val = 0
 let s4_val = 0
+let love_Multiplier = 1
 
 let s2_array = ['No term limits', 'Two-term limit']
 let s3_array = [
@@ -77,15 +78,62 @@ let s4_array = [
   'The Presidential veto shall be abolished',
 ]
 
+let leftist = {
+  Con_change: -1,
+  Lib_change: 3,
+  Eth_change: 1,
+  DemSoc_change: 2,
+  Nat_change: -3,
+}
+
+let veryLeftist = {
+  Con_change: -3,
+  Lib_change: 2,
+  Eth_change: 1,
+  DemSoc_change: 4,
+  Nat_change: -5,
+}
+
+let centrist = {
+  Con_change: 1,
+  Lib_change: 1,
+  Eth_change: 2,
+  DemSoc_change: 1,
+  Nat_change: 1,
+}
+
+let centristObjectUsedForCodeLogic = {
+  Con_change: -1,
+  Lib_change: -1,
+  Eth_change: -2,
+  DemSoc_change: -1,
+  Nat_change: -1,
+}
+
+let rightist = {
+  Con_change: 1,
+  Lib_change: -3,
+  Eth_change: -1,
+  DemSoc_change: -2,
+  Nat_change: 3,
+}
+
+let veryRightist = {
+  Con_change: 3,
+  Lib_change: -2,
+  Eth_change: -1,
+  DemSoc_change: -4,
+  Nat_change: 5,
+}
+
 let s1 = ref('')
 let s2 = ref(s2_array[s2_val])
 let s3 = ref(s3_array[s3_val])
 let s4 = ref(s4_array[s4_val])
 
-function amendment_arrow(input, amendmentVal, amendmentTextArray) {
-  console.log(input)
-  console.log(amendmentVal + 'I like to eat cabbages')
-  console.log(amendmentTextArray)
+function amendment_arrow(input, amendmentVal, amendmentTextArray, ideology) {
+  console.log(input + amendmentVal + amendmentTextArray)
+  console.log(love_Multiplier + ' is the love_Multiplier')
   let amendment = ref(amendmentTextArray[amendmentVal])
   if (input === 'left') {
     console.log('Left button clicked')
@@ -95,6 +143,11 @@ function amendment_arrow(input, amendmentVal, amendmentTextArray) {
       amendment.value = amendmentTextArray[amendmentVal]
       console.log('Expected amendment: ' + amendment)
       console.log('Expected amendment: ' + amendmentTextArray[amendmentVal])
+      Conservative_love.value += ideology.Con_change
+      Liberal_love.value += ideology.Lib_change
+      Ethnic_love.value += ideology.Eth_change
+      Democratic_Socialism_love.value += ideology.DemSoc_change
+      Nationalist_love.value += ideology.Nat_change
     } else {
       console.log('Array length: ' + amendmentTextArray.length)
       console.log('Array iteration: ' + (amendmentVal + 1))
@@ -106,11 +159,18 @@ function amendment_arrow(input, amendmentVal, amendmentTextArray) {
     console.log('Right button clicked')
     if (amendmentVal < amendmentTextArray.length - 1) {
       console.log('Value is less than array length')
+      love_Multiplier += 1
       amendmentVal += 1
-      amendment.value = amendmentTextArray[amendmentVal]
 
+      amendment.value = amendmentTextArray[amendmentVal]
       console.log('Expected amendment: ' + amendment)
       console.log('Expected amendment: ' + amendmentTextArray[amendmentVal])
+      console.log(ideology.Con_change)
+      Conservative_love.value += ideology.Con_change
+      Liberal_love.value += ideology.Lib_change
+      Ethnic_love.value += ideology.Eth_change
+      Democratic_Socialism_love.value += ideology.DemSoc_change
+      Nationalist_love.value += ideology.Nat_change
     } else {
       console.log('Array length: ' + amendmentTextArray.length)
       console.log('Array iteration: ' + (amendmentVal + 1))
@@ -128,18 +188,19 @@ function amendment_arrow(input, amendmentVal, amendmentTextArray) {
 }
 
 function leftButtonClick(input) {
+  console.log('the multiplier is ' + love_Multiplier.value)
   if (input == 2) {
-    s2_val = amendment_arrow('left', s2_val, s2_array)
+    s2_val = amendment_arrow('left', s2_val, s2_array, centrist)
     console.log('Inside leftButtonCLick s2_val = ' + s2_val)
     s2.value = s2_array[s2_val]
     console.log('s2 is equal to ' + s2)
   } else if (input == 3) {
-    s3_val = amendment_arrow('left', s3_val, s3_array)
+    s3_val = amendment_arrow('left', s3_val, s3_array, centrist)
     console.log('Inside leftButtonCLick s3_val = ' + s3_val)
     s3.value = s3_array[s3_val]
     console.log('s3 is equal to ' + s3)
   } else if (input == 4) {
-    s4_val = amendment_arrow('left', s4_val, s4_array)
+    s4_val = amendment_arrow('left', s4_val, s4_array, leftist)
     console.log('Inside leftButtonCLick s3_val = ' + s4_val)
     s4.value = s4_array[s4_val]
     console.log('s4 is equal to ' + s4)
@@ -148,29 +209,28 @@ function leftButtonClick(input) {
 
 function rightButtonClick(input) {
   if (input == 2) {
-    s2_val = amendment_arrow('right', s2_val, s2_array)
+    s2_val = amendment_arrow('right', s2_val, s2_array, centrist)
     console.log('Inside rightButtonCLick s2_val = ' + s2_val)
     s2.value = s2_array[s2_val]
     console.log('s2 is equal to ' + s2)
   } else if (input == 3) {
-    s3_val = amendment_arrow('right', s3_val, s3_array)
+    s3_val = amendment_arrow('right', s3_val, s3_array, centrist)
     console.log('Inside rightButtonCLick s3_val = ' + s3_val)
     s3.value = s3_array[s3_val]
     console.log('s3 is equal to ' + s3)
   } else if (input == 4) {
-    s4_val = amendment_arrow('right', s4_val, s4_array)
+    s4_val = amendment_arrow('right', s4_val, s4_array, rightist)
     console.log('Inside rightButtonCLick s3_val = ' + s4_val)
     s4.value = s4_array[s4_val]
     console.log('s4 is equal to ' + s4)
   }
 }
 
-function increment() {
-  count.value -= 5
-}
-const SnowArray = ref(['1'])
-console.log(SnowArray)
-function preview() {}
+/* Conservative_love.value += 2 * love_Multiplier
+Liberal_love.value += 2 * love_Multiplier
+Ethnic_love.value += 2 * love_Multiplier
+Democratic_Socialism_love.value += 2 * love_Multiplier
+Nationalist_love.value += 2 * love_Multiplier */
 </script>
 
 <style scoped>

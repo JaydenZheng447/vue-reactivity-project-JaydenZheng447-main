@@ -180,6 +180,25 @@ function s4_arrow(input) {
   }
 }
 
+function leftButtonClick(input) {
+  if (input == 2) {
+    s2_val = amendment_arrow('left', s2_val, s2_array)
+    console.log('Inside leftButtonCLick s2_val = ' + s2_val)
+    s2.value = s2_array[s2_val]
+    console.log('s2 is equal to ' + s2)
+  } else if (input == 3) {
+    s3_val = amendment_arrow('left', s3_val, s3_array)
+    console.log('Inside leftButtonCLick s3_val = ' + s3_val)
+    s3.value = s3_array[s3_val]
+    console.log('s3 is equal to ' + s3)
+  } else if (input == 4) {
+    s4_val = amendment_arrow('left', s4_val, s4_array)
+    console.log('Inside leftButtonCLick s3_val = ' + s4_val)
+    s4.value = s4_array[s4_val]
+    console.log('s4 is equal to ' + s4)
+  }
+}
+
 function increment() {
   count.value -= 5
 }

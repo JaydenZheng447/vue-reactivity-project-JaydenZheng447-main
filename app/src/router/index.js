@@ -5,6 +5,7 @@ import AnimalViewer from '@/views/AnimalViewer.vue'
 import TestView from '@/views/TestView.vue'
 import VoteView from '@/views/Vote.vue'
 import VoteViewer from '@/views/VoteView.vue'
+import ParliamentView from '@/views/Parliament.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/voter',
       name: 'voter',
       component: VoteViewer,
+    },
+    {
+      path: '/parliament',
+      name: 'parliament',
+      component: ParliamentView,
     },
   ],
 })
