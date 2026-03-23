@@ -10,10 +10,24 @@ import ParliamentView from '@/views/Parliament.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+
+    
     {
       path: '/',
       name: 'home',
-      component: CookieClicker,
+      component: VoteView,
+    },
+
+    {
+      path: '/parliament',
+      name: 'parliament',
+      component: ParliamentView,
+    },
+    /* 
+    {
+      path: '/voter',
+      name: 'voter',
+      component: VoteViewer,
     },
     {
       path: '/user-create',
@@ -29,22 +43,7 @@ const router = createRouter({
       path: '/test-view',
       name: 'test-view',
       component: TestView,
-    },
-    {
-      path: '/vote',
-      name: 'vote',
-      component: VoteView,
-    },
-    {
-      path: '/voter',
-      name: 'voter',
-      component: VoteViewer,
-    },
-    {
-      path: '/parliament',
-      name: 'parliament',
-      component: ParliamentView,
-    },
+    }, */
   ],
 })
 

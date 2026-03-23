@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    
+        <RouterLink to="/">Return to the home screen</RouterLink>
     <img class="subContainer" src="/parliament.png" />
     <div class="container">
       <div v-if="showMemberVariable === true">
@@ -16,6 +18,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup>
