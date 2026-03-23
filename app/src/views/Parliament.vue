@@ -4,13 +4,13 @@
     <div class="container">
       <div v-if="showMemberVariable === true">
         <button @click="showMembers()">
-          Click here to hide the list of top Members of Parliament
+          Click here to hide the list of influential Members of Parliament
         </button>
         <div class="subContainer" v-for="mp in mps">{{ mp.name }}, {{ mp.party }}</div>
       </div>
       <div v-else>
         <button @click="showMembers()">
-          Click here to show the list of top Members of Parliament
+          Click here to show the list of influential Members of Parliament
         </button>
         <div>We currently have yet to see any members of parliament</div>
       </div>

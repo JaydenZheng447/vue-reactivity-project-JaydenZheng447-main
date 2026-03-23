@@ -45,7 +45,7 @@
       <p>{{ s4 }}</p>
       <button @click="rightButtonClick(4)">&#8594;</button>
     </div>
-    <RouterLink to="/test-view">Test Views</RouterLink>
+    <RouterLink to="/parliament">Click here to see the Parliamentary composition</RouterLink>
   </div>
 </template>
 
@@ -102,7 +102,8 @@ let centrist = {
   Nat_change: 1,
 }
 
-let centristObjectUsedForCodeLogic = {
+//ThisObjectIsUsedForCodeLogic
+let antiCentrist = {
   Con_change: -1,
   Lib_change: -1,
   Eth_change: -2,
@@ -190,17 +191,17 @@ function amendment_arrow(input, amendmentVal, amendmentTextArray, ideology) {
 function leftButtonClick(input) {
   console.log('the multiplier is ' + love_Multiplier.value)
   if (input == 2) {
-    s2_val = amendment_arrow('left', s2_val, s2_array, centrist)
+    s2_val = amendment_arrow('left', s2_val, s2_array, antiCentrist)
     console.log('Inside leftButtonCLick s2_val = ' + s2_val)
     s2.value = s2_array[s2_val]
     console.log('s2 is equal to ' + s2)
   } else if (input == 3) {
-    s3_val = amendment_arrow('left', s3_val, s3_array, centrist)
+    s3_val = amendment_arrow('left', s3_val, s3_array, antiCentrist)
     console.log('Inside leftButtonCLick s3_val = ' + s3_val)
     s3.value = s3_array[s3_val]
     console.log('s3 is equal to ' + s3)
   } else if (input == 4) {
-    s4_val = amendment_arrow('left', s4_val, s4_array, leftist)
+    s4_val = amendment_arrow('left', s4_val, s4_array, rightist)
     console.log('Inside leftButtonCLick s3_val = ' + s4_val)
     s4.value = s4_array[s4_val]
     console.log('s4 is equal to ' + s4)
@@ -219,7 +220,7 @@ function rightButtonClick(input) {
     s3.value = s3_array[s3_val]
     console.log('s3 is equal to ' + s3)
   } else if (input == 4) {
-    s4_val = amendment_arrow('right', s4_val, s4_array, rightist)
+    s4_val = amendment_arrow('right', s4_val, s4_array, leftist)
     console.log('Inside rightButtonCLick s3_val = ' + s4_val)
     s4.value = s4_array[s4_val]
     console.log('s4 is equal to ' + s4)
