@@ -14,7 +14,7 @@
     <span class="approvalBar">
       PFJP (Democratic Socialist) Approval: <span>{{ Democratic_Socialism_love }}%</span>
     </span>
-    <span class="approvalBar" > 
+    <span class="approvalBar">
       WPB (Ethnic Minority) Approval: <span>{{ Ethnic_love }}%</span>
     </span>
   </div>
@@ -23,7 +23,7 @@
     <h1 class="marginClass">Amendments</h1>
     <h2>Amendment 1: The Supreme Court</h2>
     <div class="subContainer">
-      <button @click="leftButtonClick(1) ">&#8592;</button>
+      <button @click="leftButtonClick(1)">&#8592;</button>
       <p>{{ s1 }}</p>
       <button @click="rightButtonClick(1)">&#8594;</button>
     </div>
@@ -46,9 +46,9 @@
       <p>{{ s4 }}</p>
       <button @click="rightButtonClick(4)">&#8594;</button>
     </div>
-<<<<<<< HEAD
+    <<<<<<< HEAD
     <RouterLink to="/parliament">Click here to see the Parliamentary composition</RouterLink>
-=======
+    =======
     <button @click="finalVoteCalculator()">
       Click here to see if Parliament will accept your new Constitution
     </button>
@@ -58,7 +58,7 @@
       {{ Parties_that_support_you }}
     </div>
     <div v-else></div>
->>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
+    >>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
   </div>
 </template>
 
@@ -73,6 +73,7 @@ let Nationalist_love = ref(35)
 let Democratic_Socialism_love = ref(35)
 let Ethnic_love = ref(15)
 
+//i am commenting just to check my github
 let s1_val = 0
 let s2_val = 0
 let s3_val = 0
@@ -330,7 +331,6 @@ function showResultFunction() {
 </script>
 
 <style scoped>
-
 .container {
   display: flex;
   flex-direction: column;
