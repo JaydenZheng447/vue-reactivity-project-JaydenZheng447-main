@@ -46,9 +46,8 @@
       <p>{{ s4 }}</p>
       <button @click="rightButtonClick(4)">&#8594;</button>
     </div>
-    <<<<<<< HEAD
     <RouterLink to="/parliament">Click here to see the Parliamentary composition</RouterLink>
-    =======
+
     <button @click="finalVoteCalculator()">
       Click here to see if Parliament will accept your new Constitution
     </button>
@@ -58,7 +57,6 @@
       {{ Parties_that_support_you }}
     </div>
     <div v-else></div>
-    >>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
   </div>
 </template>
 
