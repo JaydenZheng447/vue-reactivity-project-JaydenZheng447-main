@@ -121,7 +121,6 @@ let centrist = {
   Nat_change: 2,
 }
 
-<<<<<<< HEAD
 //ThisObjectIsUsedForCodeLogic
 let antiCentrist = {
   Con_change: -1,
@@ -129,14 +128,6 @@ let antiCentrist = {
   Eth_change: -2,
   DemSoc_change: -1,
   Nat_change: -1,
-=======
-let centristObjectUsedForCodeLogic = {
-  Con_change: -2,
-  Lib_change: -2,
-  Eth_change: -4,
-  DemSoc_change: -2,
-  Nat_change: -2,
->>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
 }
 
 let rightist = {
@@ -218,27 +209,13 @@ function amendment_arrow(input, amendmentVal, amendmentTextArray, ideology) {
 
 function leftButtonClick(input) {
   console.log('the multiplier is ' + love_Multiplier.value)
-<<<<<<< HEAD
   if (input == 2) {
     s2_val = amendment_arrow('left', s2_val, s2_array, antiCentrist)
-=======
-  if (input == 1) {
-    s1_val = amendment_arrow('left', s1_val, s1_array, veryLeftist)
-    console.log('Inside leftButtonCLick s2_val = ' + s1_val)
-    s1.value = s1_array[s1_val]
-    console.log('s1 is equal to ' + s1)
-  } else if (input == 2) {
-    s2_val = amendment_arrow('left', s2_val, s2_array, centristObjectUsedForCodeLogic)
->>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
     console.log('Inside leftButtonCLick s2_val = ' + s2_val)
     s2.value = s2_array[s2_val]
     console.log('s2 is equal to ' + s2)
   } else if (input == 3) {
-<<<<<<< HEAD
     s3_val = amendment_arrow('left', s3_val, s3_array, antiCentrist)
-=======
-    s3_val = amendment_arrow('left', s3_val, s3_array, centristObjectUsedForCodeLogic)
->>>>>>> 738dda222d76a35b4b3c13a4d55fc0eabb4ed080
     console.log('Inside leftButtonCLick s3_val = ' + s3_val)
     s3.value = s3_array[s3_val]
     console.log('s3 is equal to ' + s3)
